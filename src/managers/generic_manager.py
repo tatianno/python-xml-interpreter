@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from elements import Node
 from exceptions import DoesExistsException
 
 
@@ -12,7 +13,7 @@ class AbstractManager:
         ...
     
     @abstractmethod
-    def get(self, id: str) -> object:
+    def get(self, id: str) -> Node:
         ...
     
     @abstractmethod
@@ -26,10 +27,10 @@ class AbstractManager:
 
 class GenericManager(AbstractManager):
 
-    def set(self, obj: object) -> None:
+    def set(self, obj: Node) -> None:
         self._objects[obj.id] = obj
     
-    def get(self, id: str) -> object:
+    def get(self, id: str) -> Node:
         return self._objects.get(id)
     
     def exists(self, id: str) -> bool:
